@@ -55,40 +55,12 @@ void setup()
 
 
 void loop()
-{
-  if (handleConversion() == true)
-  {
-    Serial.print("COMP:\t");
-    Serial.print(val_23);
-    Serial.println();
-  }
+{ 
+  int16_t val_23 = ADS.readADC_Differential_2_3(); 
+  float volts_23 = ADS.toVoltage(val_23); 
 
-  // do other stuff here
-  delay(100);
-}
+  Serial.print("\tval_23: ");  Serial.print("\t"); Serial.println(volts_23, 3);
+  Serial.println();
 
-
-// can be changed to hold other differentials reads too.
-bool handleConversion()
-{
-  if (ADS.isReady())
-  {
-    if (pair == 01)
-    {
-      val_01 = ADS.getValue();
-      pair = 23;
-      ADS.requestADC_Differential_2_3();
-      return false;  // only one done
-    }
-
-    // last of series to check
-    if (pair == 23)
-    {
-      val_23 = ADS.getValue();
-      pair = 01;
-      ADS.requestADC_Differential_0_1();
-      return true;   // both are updated
-    }
-  }
-  return false;  // default not all read
+   delay(200); 
 }
