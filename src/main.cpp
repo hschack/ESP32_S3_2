@@ -6,12 +6,11 @@
 #define I2C_SCL 5
 
 //
-//    FILE: ADS_async_differential.ino
-//  AUTHOR: Rob.Tillaart
+// FILE: ADS_async_differential.ino
+// AUTHOR: Rob.Tillaart
 // VERSION: 0.1.0
 // PURPOSE: read multiple differential continuously
 //
-
 // test
 // connect 4 potmeters
 //
@@ -52,7 +51,6 @@ void setup()
   // trigger first read
   ADS.requestADC_Differential_0_1();
 }
-
 
 void loop()
 { 
